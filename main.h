@@ -35,22 +35,25 @@ void traverser(rive *riveDepart, rive *riveArrivee, int coteRive, int cOuM, int 
     }
 }
 
-void gagneOuPerduOuRien(rive riveDepart, rive riveArrivee){
+int gagneOuPerduOuRien(rive riveDepart, rive riveArrivee){
     // Victoire
     if(riveDepart.missionnaire == 0 && riveDepart.cannibale == 0 && riveArrivee.missionnaire == 3 && riveArrivee.cannibale == 3){
         gagner();
+        return 1;
     }
     // Défaite (rive arrivée)
     else if(riveArrivee.missionnaire < riveArrivee.cannibale){
         perdu(RIVEARRIVEE);
+        return 0;
     }
     // Défaite (rive départ)
     else if(riveDepart.missionnaire < riveDepart.cannibale){
         perdu(RIVEDEPART);
+        return 0;
     }
     // Ni perdu ni gagner
     else {
-        rienFaire();
+        return -1;
     }
 }
 
